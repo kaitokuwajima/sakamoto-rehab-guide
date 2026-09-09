@@ -106,7 +106,7 @@
   <main>
     <section class="hero"><img src="assets/hero.jpg" alt="理学療法士の見守りのもと、腕を大きく動かす利用者"><div class="wrap hero-copy"><div class="eyebrow">2026.11.01 OPEN</div><h1><em>自分の足で来て、</em><em>自分の足で帰る。</em></h1><p class="lead">その90分を、となりで。<span>まだ、伸びしろがある。<br>それを、一緒に確かめにいく。</span></p><div class="hero-actions"><a class="button" href="#availability">空き状況を見る</a><a class="button alt" href="#contact">お問い合わせ窓口</a></div><p class="hero-note">短時間 通所リハビリテーション　｜　1コマ90分</p></div></section>
     <div class="announce"><div class="wrap"><div><strong>いま、全クール空きがあります。</strong><span>送迎ありの②クールから、ご案内を開始します。</span></div><a class="button" href="#contact">空き枠を相談する</a></div></div>
-    <section class="availability" id="availability"><div class="wrap"><div class="availability-head"><div><div class="kicker">AVAILABILITY</div><h2>1日の4クール 空き状況</h2><p class="section-lead">1クールは2グループ。理学療法士1名あたり最大4名で、順に個別リハビリテーションを行います。</p></div><div class="availability-key"><b>すべて空きあり</b><br>各クール　8名まで（4名 × 2グループ）</div></div><div class="days" id="days" aria-label="曜日ごとの空き状況"></div><div class="booking-strip"><div><strong id="selection">気になる枠を選んでください。</strong><span>選択後、お問い合わせ窓口でご希望をお知らせください。</span></div><a class="button" href="#contact">お問い合わせへ</a></div></div></section>
+    <section class="availability" id="availability"><div class="wrap"><div class="availability-head"><div><div class="kicker">AVAILABILITY</div><h2>1日の4クール 空き状況</h2><p class="section-lead">1クールは2グループ。理学療法士1名あたり最大4名で、順に個別リハビリテーションを行います。</p></div><div class="availability-key"><b>最新の空き状況</b><br><span data-last-updated>読み込み中</span></div></div><div class="days" id="days" aria-label="曜日ごとの空き状況"></div><div class="booking-strip"><div><strong id="selection">気になる枠を選んでください。</strong><span>選択後、お問い合わせ窓口でご希望をお知らせください。</span></div><a class="button" href="#contact">お問い合わせへ</a></div></div></section>
     <section class="care"><div class="wrap"><div class="kicker">THE 90 MINUTES</div><h2>リハビリだけの、90分。</h2><div class="care-grid"><article class="care-card"><div class="number">01</div><h3>歩ける方へ。</h3><p>移動が自立している方。歩行器の方や、お家の中を歩ける方も対象です。</p></article><article class="care-card"><div class="number">02</div><h3>動くことへ。</h3><p>食事・入浴・レクリエーションはありません。90分を、動くことに集中します。</p></article><article class="care-card"><div class="number">03</div><h3>少人数で。</h3><p>1コマ最大8名。2名の理学療法士が、2グループを見守ります。</p></article></div></div></section>
     <section class="analysis" id="analysis"><div class="wrap analysis-grid"><figure class="analysis-figure"><img src="assets/motion-analysis.png" alt="三脚のカメラで歩行を撮影し、骨格と膝の角度を重ねて可視化したイメージ"><figcaption class="caption">三脚で撮る。歩いてもらうだけ。3か月に1度、変化を見える形に。</figcaption></figure><div class="analysis-copy"><div class="kicker">MOTION ANALYSIS</div><h2>言葉だけではなく、動きで確かめる。</h2><p>歩く速さ・歩幅・1分間の歩数・膝の伸び・5回立ち座りを、数値のレポートとして共有します。</p><ul class="steps"><li><b>01</b>初回は約5分</li><li><b>02</b>以降は約2分</li><li><b>03</b>ご本人・ご家族・ケアマネジャーへ</li></ul></div></div></section>
     <section class="transport" id="transport"><div class="wrap transport-grid"><div class="transport-copy"><span class="pill">② 10:40〜12:10 から送迎開始</span><h2>阪本病院から<br>おおむね半径4km。</h2><p>送迎範囲の目安です。圏外にお住まいの方も、まずご相談ください。</p><div class="places">圏内の目安：三本松・湊・中筋・川東・白鳥・大内・町田・土居・落合・小磯・帰来 ほか</div></div><figure class="transport-map"><img src="assets/transport-area.png" alt="阪本病院を中心とした半径4kmの送迎範囲マップ"></figure></div></section>
@@ -122,24 +122,45 @@
       ['④','15:10〜16:40','送迎未定']
     ];
     const root = document.getElementById('days');
-    days.forEach(day => {
-      const el = document.createElement('article'); el.className = 'day';
-      el.innerHTML = `<div class="day-title">${day}曜日</div>`;
-      slots.forEach(([num,time,transport]) => {
-        const btn = document.createElement('button');
-        btn.className = `slot ${num === '②' ? 'send' : ''}`;
-        btn.innerHTML = `<span class="slot-num">${num}クール</span><span class="slot-time">${time}</span><span class="slot-status">空きあり　8 / 8</span>`;
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.slot').forEach(x => x.classList.remove('selected'));
-          btn.classList.add('selected');
-          document.getElementById('selection').textContent = `${day}曜日　${num} ${time} を選択中`;
-          const select = document.querySelector('#contact-form select');
-          select.selectedIndex = slots.findIndex(x => x[0] === num) + 1;
+    const fallback = { capacityPerCourse:8, availability:Object.fromEntries(days.map(day => [day, Object.fromEntries(slots.map(([num]) => [num,8]))])) };
+    function stamp(iso) {
+      if (!iso) return '公開中の空き状況';
+      const d = new Date(iso);
+      return `最終更新：${d.toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}`;
+    }
+    function renderAvailability(data) {
+      const capacity = data.capacityPerCourse || 8;
+      root.replaceChildren();
+      days.forEach(day => {
+        const el = document.createElement('article'); el.className = 'day';
+        el.innerHTML = `<div class="day-title">${day}曜日</div>`;
+        slots.forEach(([num,time,transport]) => {
+          const remaining = data.availability?.[day]?.[num] ?? capacity;
+          const isOpen = remaining > 0;
+          const btn = document.createElement('button');
+          btn.className = `slot ${num === '②' ? 'send' : ''}`;
+          btn.innerHTML = `<span class="slot-num">${num}クール</span><span class="slot-time">${time}</span><span class="slot-status">${isOpen ? `空きあり　${remaining} / ${capacity}` : '受付調整中'}</span>`;
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.slot').forEach(x => x.classList.remove('selected'));
+            btn.classList.add('selected');
+            document.getElementById('selection').textContent = `${day}曜日　${num} ${time} を選択中`;
+            const select = document.querySelector('#contact-form select');
+            select.selectedIndex = slots.findIndex(x => x[0] === num) + 1;
+          });
+          el.appendChild(btn);
         });
-        el.appendChild(btn);
+        root.appendChild(el);
       });
-      root.appendChild(el);
-    });
+      document.querySelectorAll('[data-last-updated]').forEach(el => el.textContent = stamp(data.updatedAt));
+    }
+    async function refreshAvailability() {
+      try {
+        const response = await fetch(`assets/availability.json?${Date.now()}`, {cache:'no-store'});
+        renderAvailability(response.ok ? await response.json() : fallback);
+      } catch { renderAvailability(fallback); }
+    }
+    refreshAvailability();
+    setInterval(refreshAvailability, 60000);
     document.getElementById('contact-form').addEventListener('submit', event => {
       event.preventDefault();
       alert('お問い合わせ窓口は公開準備中です。正式な連絡先の決定後、このフォームを接続します。');
