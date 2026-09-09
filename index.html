@@ -19,7 +19,7 @@
     nav { display:flex; gap:18px; font-size:13px; font-weight:700; }
     nav a { text-decoration:none; }
     .hero { min-height:650px; position:relative; display:flex; align-items:center; overflow:hidden; }
-    .hero::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(251,249,244,.90) 0%,rgba(251,249,244,.67) 38%,rgba(251,249,244,.12) 72%,rgba(251,249,244,.02) 100%); z-index:1; }
+    .hero::before { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(251,249,244,.72) 0%,rgba(251,249,244,.42) 38%,rgba(251,249,244,.08) 72%,rgba(251,249,244,.02) 100%); z-index:1; }
     .hero img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 24%; }
     .hero-copy { position:relative; z-index:2; width:min(100%,610px); padding:90px 0; }
     .eyebrow { display:inline-flex; gap:9px; align-items:center; color:var(--clay); font-size:14px; font-weight:800; letter-spacing:.09em; }
@@ -105,21 +105,19 @@
   <header class="topbar"><div class="wrap"><div class="brand">（仮）リハビリ専科 さかもと<small>医療法人社団聖心会　阪本病院／介護医療院</small></div><nav><a href="#availability">空き状況</a><a href="#analysis">動作解析</a><a href="#transport">送迎範囲</a><a href="#contact">お問い合わせ</a></nav></div></header>
   <main>
     <section class="hero"><img src="assets/hero.jpg" alt="理学療法士の見守りのもと、腕を大きく動かす利用者"><div class="wrap hero-copy"><div class="eyebrow">2026.11.01 OPEN</div><h1><em>自分の足で来て、</em><em>自分の足で帰る。</em></h1><p class="lead">その90分を、となりで。<span>まだ、伸びしろがある。<br>それを、一緒に確かめにいく。</span></p><div class="hero-actions"><a class="button" href="#availability">空き状況を見る</a><a class="button alt" href="#contact">お問い合わせ窓口</a></div><p class="hero-note">短時間 通所リハビリテーション　｜　1コマ90分</p></div></section>
-    <div class="announce"><div class="wrap"><div><strong>いま、全クール空きがあります。</strong><span>送迎ありの②クールから、ご案内を開始します。</span></div><a class="button" href="#contact">空き枠を相談する</a></div></div>
-    <section class="availability" id="availability"><div class="wrap"><div class="availability-head"><div><div class="kicker">AVAILABILITY</div><h2>今週の空き状況</h2><p class="section-lead">1クールは2グループ。理学療法士1名あたり最大4名で、順に個別リハビリテーションを行います。</p></div><div class="availability-key"><b>すべて空きあり</b><br>各クール　8名まで（4名 × 2グループ）</div></div><div class="days" id="days" aria-label="曜日ごとの空き状況"></div><div class="booking-strip"><div><strong id="selection">気になる枠を選んでください。</strong><span>選択後、お問い合わせ窓口でご希望をお知らせください。</span></div><a class="button" href="#contact">お問い合わせへ</a></div></div></section>
+    <div class="announce"><div class="wrap"><div><strong>いま、午前の全枠が空いています。</strong><span>送迎ありの②クールから、ご案内を開始します。</span></div><a class="button" href="#contact">空き枠を相談する</a></div></div>
+    <section class="availability" id="availability"><div class="wrap"><div class="availability-head"><div><div class="kicker">AVAILABILITY</div><h2>午前クールの空き状況</h2><p class="section-lead">開設時は午前2クール。1クールは2グループ、理学療法士1名あたり最大4名で、順に個別リハビリテーションを行います。</p></div><div class="availability-key"><b>すべて空きあり</b><br>各クール　8名まで（4名 × 2グループ）</div></div><div class="days" id="days" aria-label="曜日ごとの空き状況"></div><div class="booking-strip"><div><strong id="selection">気になる枠を選んでください。</strong><span>選択後、お問い合わせ窓口でご希望をお知らせください。</span></div><a class="button" href="#contact">お問い合わせへ</a></div></div></section>
     <section class="care"><div class="wrap"><div class="kicker">THE 90 MINUTES</div><h2>リハビリだけの、90分。</h2><div class="care-grid"><article class="care-card"><div class="number">01</div><h3>歩ける方へ。</h3><p>移動が自立している方。歩行器の方や、お家の中を歩ける方も対象です。</p></article><article class="care-card"><div class="number">02</div><h3>動くことへ。</h3><p>食事・入浴・レクリエーションはありません。90分を、動くことに集中します。</p></article><article class="care-card"><div class="number">03</div><h3>少人数で。</h3><p>1コマ最大8名。2名の理学療法士が、2グループを見守ります。</p></article></div></div></section>
     <section class="analysis" id="analysis"><div class="wrap analysis-grid"><figure class="analysis-figure"><img src="assets/motion-analysis.png" alt="三脚のカメラで歩行を撮影し、骨格と膝の角度を重ねて可視化したイメージ"><figcaption class="caption">三脚で撮る。歩いてもらうだけ。3か月に1度、変化を見える形に。</figcaption></figure><div class="analysis-copy"><div class="kicker">MOTION ANALYSIS</div><h2>言葉だけではなく、動きで確かめる。</h2><p>歩く速さ・歩幅・1分間の歩数・膝の伸び・5回立ち座りを、数値のレポートとして共有します。</p><ul class="steps"><li><b>01</b>初回は約5分</li><li><b>02</b>以降は約2分</li><li><b>03</b>ご本人・ご家族・ケアマネジャーへ</li></ul></div></div></section>
     <section class="transport" id="transport"><div class="wrap transport-grid"><div class="transport-copy"><span class="pill">② 10:40〜12:10 から送迎開始</span><h2>阪本病院から<br>おおむね半径4km。</h2><p>送迎範囲の目安です。圏外にお住まいの方も、まずご相談ください。</p><div class="places">圏内の目安：三本松・湊・中筋・川東・白鳥・大内・町田・土居・落合・小磯・帰来 ほか</div></div><figure class="transport-map"><img src="assets/transport-area.png" alt="阪本病院を中心とした半径4kmの送迎範囲マップ"></figure></div></section>
-    <section class="contact" id="contact"><div class="wrap contact-grid"><div><div class="kicker" style="color:#e9a68d">CONTACT</div><h2>お問い合わせ窓口</h2><p>ご希望の曜日・クールをお知らせください。正式な連絡先は、開設前にご案内します。</p><form class="contact-form" id="contact-form"><input aria-label="お名前" placeholder="お名前"><select aria-label="ご希望のクール"><option value="">ご希望のクールを選択</option><option>① 9:00〜10:30</option><option>② 10:40〜12:10（送迎あり）</option><option>③ 13:30〜15:00</option><option>④ 15:10〜16:40</option></select><button class="button" type="submit">お問い合わせ内容を確認する</button></form></div><aside class="qr-card"><img src="assets/contact-qr.png" alt="このサイトを開くQRコード"><strong>サイトを開く</strong><span>空き状況・送迎範囲のご案内</span></aside></div></section>
+    <section class="contact" id="contact"><div class="wrap contact-grid"><div><div class="kicker" style="color:#e9a68d">CONTACT</div><h2>お問い合わせ窓口</h2><p>ご希望の曜日・クールをお知らせください。正式な連絡先は、開設前にご案内します。</p><form class="contact-form" id="contact-form"><input aria-label="お名前" placeholder="お名前"><select aria-label="ご希望のクール"><option value="">ご希望のクールを選択</option><option>① 9:00〜10:30</option><option>② 10:40〜12:10（送迎あり）</option></select><button class="button" type="submit">お問い合わせ内容を確認する</button></form></div><aside class="qr-card"><img src="assets/contact-qr.png" alt="このサイトを開くQRコード"><strong>サイトを開く</strong><span>空き状況・送迎範囲のご案内</span></aside></div></section>
   </main>
   <footer><div class="wrap"><span>医療法人社団聖心会　阪本病院／介護医療院</span><span>（仮）リハビリ専科 さかもと　｜　正式名称は届出までに決定予定</span></div></footer>
   <script>
     const days = ['月','火','木','金','土'];
     const slots = [
       ['①','9:00〜10:30','送迎なし'],
-      ['②','10:40〜12:10','送迎あり'],
-      ['③','13:30〜15:00','送迎未定'],
-      ['④','15:10〜16:40','送迎未定']
+      ['②','10:40〜12:10','送迎あり']
     ];
     const root = document.getElementById('days');
     days.forEach(day => {
