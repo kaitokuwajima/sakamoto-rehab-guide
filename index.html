@@ -3,168 +3,38 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="（仮）リハビリ専科 さかもと。短時間通所リハビリテーションのご案内と空き状況。">
-  <title>（仮）リハビリ専科 さかもと｜空き状況のご案内</title>
+  <meta name="description" content="リハプラス さかもと（仮）。短時間デイケアのご案内と空き状況。">
+  <title>リハプラス さかもと（仮）｜空き状況のご案内</title>
   <style>
-    :root { --ink:#183e3e; --deep:#10373a; --sage:#dce9e0; --pale:#fbf9f4; --sand:#f2eee5; --clay:#bf806a; --line:#d5dfd9; --white:#fffefa; }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; background:var(--pale); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif; line-height:1.6; }
-    a { color:inherit; }
-    .wrap { width:min(1120px, calc(100% - 40px)); margin:auto; }
-    .topbar { padding:15px 0; background:rgba(251,249,244,.95); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:4; backdrop-filter:blur(12px); }
-    .topbar .wrap { display:flex; align-items:center; justify-content:space-between; gap:15px; }
-    .brand { font-size:14px; font-weight:700; letter-spacing:.05em; }
-    .brand small { display:block; font-size:10px; letter-spacing:.12em; color:#71807a; font-weight:600; }
-    nav { display:flex; gap:18px; font-size:13px; font-weight:700; }
-    nav a { text-decoration:none; }
-    .hero { min-height:650px; position:relative; display:flex; align-items:center; overflow:hidden; }
-    .hero::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(251,249,244,.82) 0%,rgba(251,249,244,.48) 47%,rgba(251,249,244,.08) 69%,rgba(251,249,244,0) 82%); z-index:1; }
-    .hero img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 24%; }
-    .hero-copy { position:relative; z-index:2; width:min(100%,610px); padding:90px 0; }
-    .eyebrow { display:inline-flex; gap:9px; align-items:center; color:var(--clay); font-size:14px; font-weight:800; letter-spacing:.09em; }
-    .eyebrow::before { content:""; width:9px; height:9px; background:var(--clay); border-radius:50%; }
-    h1 { font-size:clamp(43px,6.1vw,75px); line-height:1.22; letter-spacing:-.055em; margin:22px 0 20px; font-weight:800; }
-    h1 em { display:block; font-style:normal; }
-    .lead { font-size:clamp(17px,2vw,23px); font-weight:700; line-height:1.75; margin:0; max-width:450px; }
-    .lead span { display:block; font-size:.8em; color:#4e6d68; }
-    .hero-actions { display:flex; gap:12px; align-items:center; margin-top:34px; flex-wrap:wrap; }
-    .button { display:inline-flex; align-items:center; justify-content:center; padding:15px 24px; min-height:52px; background:var(--deep); border:1px solid var(--deep); border-radius:3px; color:white; text-decoration:none; font-size:15px; font-weight:800; }
-    .button.alt { background:rgba(255,255,255,.72); color:var(--ink); }
-    .hero-note { color:#5e706b; font-size:12px; font-weight:700; }
-    .announce { background:var(--deep); color:white; }
-    .announce .wrap { padding:24px 0; display:flex; align-items:center; justify-content:space-between; gap:20px; }
-    .announce strong { font-size:21px; letter-spacing:.02em; }
-    .announce span { color:#cfddd7; font-weight:600; }
-    section { padding:94px 0; }
-    .kicker { color:var(--clay); letter-spacing:.13em; font-size:12px; font-weight:800; }
-    h2 { font-size:clamp(30px,4vw,48px); line-height:1.26; letter-spacing:-.045em; margin:9px 0 17px; }
-    .section-lead { max-width:670px; font-size:17px; margin:0; color:#46625e; font-weight:600; }
-    .availability { background:var(--white); }
-    .availability-head { display:flex; justify-content:space-between; align-items:end; gap:20px; margin-bottom:35px; }
-    .availability-key { border:1px solid #e1e8e3; padding:13px 16px; border-radius:4px; color:#506863; font-size:13px; font-weight:700; white-space:nowrap; }
-    .availability-key b { color:var(--deep); }
-    .days { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
-    .day { border:1px solid var(--line); border-radius:8px; overflow:hidden; background:#fff; min-width:0; }
-    .day-title { padding:14px 15px 12px; font-size:18px; font-weight:800; background:#f5f8f5; border-bottom:1px solid var(--line); }
-    .slot { width:100%; display:block; border:0; border-bottom:1px solid #e8ede9; background:white; padding:13px 14px; text-align:left; font:inherit; color:var(--ink); cursor:pointer; transition:.16s ease; }
-    .slot:last-child { border-bottom:0; }
-    .slot:hover,.slot.selected { background:#eef6f1; }
-    .slot.send { background:#fff8e9; position:relative; }
-    .slot.send::before { content:"送迎あり"; position:absolute; right:9px; top:9px; background:#d58138; color:white; border-radius:999px; padding:2px 7px; font-size:10px; font-weight:800; }
-    .slot-num { display:block; color:var(--clay); font-size:12px; font-weight:800; }
-    .slot-time { display:block; font-size:15px; font-weight:800; letter-spacing:-.02em; }
-    .slot-status { display:flex; align-items:center; gap:6px; margin-top:4px; color:#427b63; font-size:12px; font-weight:800; }
-    .slot-status::before { content:""; width:7px; height:7px; border-radius:50%; background:#439062; }
-    .booking-strip { margin-top:24px; display:flex; align-items:center; justify-content:space-between; gap:20px; background:var(--deep); color:white; padding:20px 23px; border-radius:8px; }
-    .booking-strip strong { font-size:17px; }
-    .booking-strip span { display:block; color:#cfdfd8; font-size:13px; }
-    .booking-strip .button { background:white; color:var(--deep); border-color:white; white-space:nowrap; }
-    .care { background:#eff4f0; }
-    .care-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-top:38px; }
-    .care-card { padding:27px; background:var(--white); border-radius:8px; border:1px solid #e1e8e3; }
-    .care-card .number { color:var(--clay); font-size:12px; font-weight:800; letter-spacing:.1em; }
-    .care-card h3 { margin:9px 0 8px; font-size:23px; line-height:1.35; letter-spacing:-.04em; }
-    .care-card p { margin:0; color:#526762; font-size:14px; font-weight:600; }
-    .analysis { background:var(--white); }
-    .analysis-grid { display:grid; grid-template-columns:1.08fr .92fr; gap:66px; align-items:center; }
-    .analysis-figure { min-width:0; border-radius:10px; background:#eef3ef; overflow:hidden; }
-    .analysis-figure img { display:block; width:100%; height:auto; }
-    .caption { padding:14px 18px; font-size:13px; color:#49625d; font-weight:700; }
-    .analysis-copy p { color:#536b65; font-size:16px; font-weight:600; }
-    .steps { list-style:none; padding:0; margin:27px 0 0; display:grid; gap:12px; }
-    .steps li { display:flex; gap:12px; align-items:baseline; font-weight:800; font-size:17px; }
-    .steps b { color:var(--clay); font-size:13px; letter-spacing:.08em; }
-    .transport { background:var(--sand); }
-    .transport-grid { display:grid; grid-template-columns:.9fr 1.1fr; align-items:center; gap:45px; }
-    .transport-map { border-radius:10px; overflow:hidden; background:white; box-shadow:0 12px 30px rgba(30,50,45,.11); }
-    .transport-map img { display:block; width:100%; height:auto; }
-    .transport-copy .pill { display:inline-block; padding:6px 10px; background:#fff0df; color:#a15f34; border-radius:999px; font-size:12px; font-weight:800; }
-    .transport-copy h2 { margin-top:12px; }
-    .transport-copy p { font-size:16px; color:#536964; font-weight:600; }
-    .places { margin:18px 0 0; padding:18px; background:rgba(255,255,255,.65); border-radius:8px; font-size:14px; font-weight:700; }
-    .contact { background:var(--deep); color:white; }
-    .contact-grid { display:grid; grid-template-columns:1fr auto; gap:45px; align-items:center; }
-    .contact h2 { margin-bottom:10px; }
-    .contact p { color:#cfddd7; margin:0; font-weight:600; }
-    .contact-form { display:grid; grid-template-columns:1fr 1fr; gap:11px; margin-top:24px; max-width:680px; }
-    .contact-form input,.contact-form select { min-height:50px; border:1px solid #53716d; padding:0 13px; background:#174246; color:white; font:inherit; border-radius:3px; }
-    .contact-form select { color:#e4f0eb; }
-    .contact-form button { grid-column:span 2; }
-    .qr-card { width:178px; padding:17px; background:white; color:var(--ink); border-radius:8px; text-align:center; }
-    .qr-card img { display:block; width:128px; height:128px; margin:auto; image-rendering:pixelated; }
-    .qr-card strong { display:block; margin-top:7px; font-size:13px; }
-    .qr-card span { display:block; color:#71817c; font-size:10px; font-weight:700; margin-top:3px; }
-    footer { padding:19px 0; background:#0d2a2c; color:#b7cbc4; font-size:12px; }
-    footer .wrap { display:flex; justify-content:space-between; gap:20px; }
-    @media (max-width:900px) { .days { grid-template-columns:repeat(3,1fr); } .analysis-grid,.transport-grid { grid-template-columns:1fr; gap:34px; } .analysis-copy { order:-1; } }
-    @media (max-width:640px) { .wrap { width:min(100% - 28px,1120px); } nav { display:none; } .hero { min-height:650px; align-items:flex-start; } .hero::before { background:linear-gradient(180deg,rgba(251,249,244,.96) 0%,rgba(251,249,244,.89) 54%,rgba(251,249,244,.13) 100%); } .hero-copy { padding-top:62px; } h1 { font-size:43px; } section { padding:65px 0; } .days { grid-template-columns:repeat(2,1fr); gap:9px; } .availability-head,.booking-strip,.announce .wrap,.contact-grid { display:block; } .availability-key { display:inline-block; margin-top:17px; white-space:normal; } .booking-strip .button { margin-top:15px; } .care-grid { grid-template-columns:1fr; gap:11px; } .contact-form { grid-template-columns:1fr; } .contact-form button { grid-column:auto; } .qr-card { margin-top:30px; } footer .wrap { display:block; } footer .wrap span { display:block; margin-top:5px; } }
+    :root{--ink:#083f42;--deep:#004d4d;--green:#1b7a59;--cream:#faf9f3;--paper:#fffefa;--line:#d6e2dc;--orange:#ee641e;--muted:#526d67}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;line-height:1.6}a{color:inherit}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.topbar{position:sticky;top:0;z-index:10;background:rgba(255,254,250,.93);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.topbar .wrap{min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:22px}.brand{font-size:clamp(16px,2vw,21px);font-weight:900;letter-spacing:.015em}.brand small{display:block;font-size:10px;color:#64807a;font-weight:700;letter-spacing:.1em}nav{display:flex;gap:20px;font-size:13px;font-weight:800}nav a{text-decoration:none}.hero{min-height:650px;position:relative;display:flex;align-items:center;isolation:isolate;overflow:hidden}.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(255,254,250,.95) 0%,rgba(255,254,250,.84) 34%,rgba(255,254,250,.18) 65%,rgba(255,254,250,0) 100%)}.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 24%;z-index:0}.hero-copy{position:relative;z-index:2;width:min(100%,600px);padding:72px 0}.open{display:inline-flex;align-items:center;gap:9px;color:var(--orange);font-size:14px;font-weight:900;letter-spacing:.1em}.open::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--orange)}h1{margin:19px 0 16px;font-size:clamp(45px,6.5vw,78px);line-height:1.12;letter-spacing:-.075em;font-weight:900}h1 span{display:block}.hero-lead{margin:0;font-size:clamp(20px,2.3vw,29px);font-weight:800;line-height:1.55;letter-spacing:-.04em}.hero-lead b{display:block;color:#36726c;font-size:.78em}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.button{display:inline-flex;min-height:52px;align-items:center;justify-content:center;padding:13px 22px;border:1px solid var(--deep);border-radius:5px;background:var(--deep);color:#fff;text-decoration:none;font-size:15px;font-weight:900;cursor:pointer}.button.light{background:rgba(255,255,255,.8);color:var(--ink)}.hero-note{margin:17px 0 0;color:#54716b;font-size:13px;font-weight:800}section{padding:88px 0}.kicker{color:var(--orange);font-size:12px;font-weight:900;letter-spacing:.14em}.section-title{margin:7px 0 10px;font-size:clamp(31px,4vw,49px);line-height:1.24;letter-spacing:-.065em}.section-copy{margin:0;max-width:700px;color:var(--muted);font-weight:700;font-size:16px}.availability{background:var(--paper)}.availability-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:31px}.updated{padding:12px 15px;border:1px solid var(--line);border-radius:8px;background:#f6faf7;font-size:13px;font-weight:800;color:#54716a}.updated b{display:block;color:var(--deep);font-size:14px}.days{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.day{overflow:hidden;border:1px solid var(--line);border-radius:10px;background:#fff;box-shadow:0 4px 15px rgba(7,65,59,.035)}.day-title{padding:14px 15px;background:#eff6f1;border-bottom:1px solid var(--line);font-size:19px;font-weight:900}.slot{position:relative;display:block;width:100%;padding:15px 14px;border:0;border-bottom:1px solid #e7eee9;background:#fff;color:var(--ink);font:inherit;text-align:left;cursor:pointer;transition:background .18s,transform .18s}.slot:last-child{border-bottom:0}.slot:hover,.slot:focus-visible,.slot.selected{background:#e9f6ef;outline:none}.slot:focus-visible{box-shadow:inset 0 0 0 3px #69a78b}.slot.send{background:#fff3e5}.slot.send:hover,.slot.send.selected{background:#ffe5c5}.slot-num{display:block;color:#47716a;font-size:12px;font-weight:900}.slot-time{display:block;margin-top:2px;font-size:16px;font-weight:900;letter-spacing:-.045em}.slot-status{display:flex;align-items:center;gap:6px;margin-top:5px;color:#237453;font-size:12px;font-weight:900}.slot-status::before{content:"";width:8px;height:8px;border-radius:50%;background:#42a46d}.send-badge{display:inline-block;margin-top:7px;padding:3px 8px;border-radius:999px;background:var(--orange);color:#fff;font-size:11px;font-weight:900}.selection-note{margin-top:22px;padding:19px 22px;border-radius:9px;background:var(--deep);color:white;font-weight:800}.selection-note span{display:block;color:#cbe1da;font-size:13px;font-weight:700}.care{background:#eff5f1}.care-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:35px}.care-card{padding:27px;background:var(--paper);border:1px solid #dce8e1;border-radius:12px}.number{color:var(--orange);font-size:12px;font-weight:900;letter-spacing:.11em}.care-card h3{margin:8px 0;font-size:24px;line-height:1.32;letter-spacing:-.055em}.care-card p{margin:0;color:var(--muted);font-size:14px;font-weight:700}.guide{background:var(--paper)}.guide-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:32px;align-items:stretch}.guide-card{padding:34px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#ffffff,#f0f8f4)}.guide-card h3{margin:8px 0 18px;font-size:clamp(27px,3vw,38px);line-height:1.32;letter-spacing:-.06em}.checks{display:grid;gap:13px;margin:0;padding:0;list-style:none}.checks li{padding-left:31px;position:relative;font-size:16px;font-weight:800}.checks li::before{content:"✓";position:absolute;left:0;top:0;width:22px;height:22px;border-radius:50%;background:var(--orange);color:#fff;text-align:center;line-height:22px;font-size:14px}.guide-note{margin:22px 0 0;padding-top:18px;border-top:1px solid var(--line);color:#5b736d;font-size:14px;font-weight:700}.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.flow-step{padding:18px 13px;border-radius:10px;background:#e8f4ed;text-align:center}.flow-step b{display:block;margin:auto auto 8px;width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;line-height:30px;font-size:14px}.flow-step span{display:block;font-size:13px;font-weight:900;line-height:1.35}.transport{background:#f4f0e8}.transport-grid{display:grid;grid-template-columns:.88fr 1.12fr;gap:44px;align-items:center}.transport-map{margin:0;overflow:hidden;border-radius:13px;background:#fff;box-shadow:0 14px 30px rgba(27,55,49,.12)}.transport-map img{display:block;width:100%;height:auto}.pill{display:inline-block;padding:6px 11px;border-radius:999px;background:#dff0e6;color:#176646;font-size:12px;font-weight:900}.transport-copy h2{margin:12px 0 10px;font-size:clamp(33px,4vw,52px);line-height:1.2;letter-spacing:-.075em}.transport-copy p{margin:0;color:var(--muted);font-size:17px;font-weight:750}.transport-copy .subnote{margin-top:22px;color:#58706a;font-size:14px}.contact{background:var(--deep);color:#fff}.contact-grid{display:grid;grid-template-columns:1fr 218px;gap:40px;align-items:center}.contact h2{margin:7px 0 8px;font-size:clamp(33px,4vw,50px);line-height:1.18;letter-spacing:-.065em}.contact-copy{margin:0;color:#d2e4dd;font-weight:700}.contact-form{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:25px}.contact-form input,.contact-form select,.contact-form textarea{width:100%;min-height:51px;padding:12px 13px;border:1px solid #4d7774;border-radius:5px;background:#0a4144;color:#fff;font:inherit}.contact-form textarea{min-height:84px;resize:vertical;grid-column:span 2}.contact-form input::placeholder,.contact-form textarea::placeholder{color:#c0d5d0}.contact-form select{color:#d7e8e3}.contact-form button{grid-column:span 2}.form-notice{grid-column:span 2;margin:2px 0 0;color:#c9ddd6;font-size:12px;font-weight:700}.qr-card{padding:18px;background:#fff;color:var(--ink);border-radius:12px;text-align:center}.qr-card img{display:block;width:154px;height:154px;margin:auto;image-rendering:pixelated}.qr-card strong{display:block;margin-top:9px;font-size:15px}.qr-card span{display:block;margin-top:3px;color:#688079;font-size:11px;font-weight:800}.form-result{display:none;grid-column:span 2;padding:13px 15px;border-radius:5px;background:#d5f1e2;color:#0b4a35;font-size:13px;font-weight:900}footer{padding:20px 0;background:#002d30;color:#b9d2ca;font-size:12px}footer .wrap{display:flex;justify-content:space-between;gap:20px}@media(max-width:900px){.days{grid-template-columns:repeat(3,1fr)}.guide-grid,.transport-grid{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}.qr-card{width:210px}.transport-map{order:2}}@media(max-width:640px){.wrap{width:min(100% - 28px,1120px)}nav{display:none}.topbar .wrap{min-height:60px}.hero{min-height:670px;align-items:flex-start}.hero::before{background:linear-gradient(180deg,rgba(255,254,250,.96),rgba(255,254,250,.86) 52%,rgba(255,254,250,.15) 100%)}.hero-copy{padding-top:62px}section{padding:64px 0}.availability-head{display:block}.updated{display:inline-block;margin-top:17px}.days{grid-template-columns:repeat(2,1fr);gap:9px}.care-grid{grid-template-columns:1fr;gap:10px}.guide-card{padding:25px}.flow{grid-template-columns:repeat(2,1fr)}.contact-form{grid-template-columns:1fr}.contact-form textarea,.contact-form button,.form-notice,.form-result{grid-column:auto}footer .wrap{display:block}footer span{display:block;margin:5px 0}}
   </style>
 </head>
 <body>
-  <header class="topbar"><div class="wrap"><div class="brand">（仮）リハビリ専科 さかもと<small>医療法人社団聖心会　阪本病院／介護医療院</small></div><nav><a href="#availability">空き状況</a><a href="#analysis">動作解析</a><a href="#transport">送迎範囲</a><a href="#contact">お問い合わせ</a></nav></div></header>
+  <header class="topbar"><div class="wrap"><div class="brand">リハプラス さかもと（仮）<small>短時間デイケア　｜　医療法人社団聖心会　阪本病院／介護医療院</small></div><nav><a href="#availability">空き状況</a><a href="#guide">ご案内</a><a href="#transport">送迎範囲</a><a href="#contact">お問い合わせ</a></nav></div></header>
   <main>
-    <section class="hero"><img src="assets/hero.jpg" alt="理学療法士の見守りのもと、腕を大きく動かす利用者"><div class="wrap hero-copy"><div class="eyebrow">2026.11.01 OPEN</div><h1><em>自分の足で来て、</em><em>自分の足で帰る。</em></h1><p class="lead">その90分を、となりで。<span>まだ、伸びしろがある。<br>それを、一緒に確かめにいく。</span></p><div class="hero-actions"><a class="button" href="#availability">空き状況を見る</a><a class="button alt" href="#contact">お問い合わせ窓口</a></div><p class="hero-note">短時間 通所リハビリテーション　｜　1コマ90分</p></div></section>
-    <div class="announce"><div class="wrap"><div><strong>いま、全クール空きがあります。</strong><span>送迎ありの②クールから、ご案内を開始します。</span></div><a class="button" href="#contact">空き枠を相談する</a></div></div>
-    <section class="availability" id="availability"><div class="wrap"><div class="availability-head"><div><div class="kicker">AVAILABILITY</div><h2>1日の4クール 空き状況</h2><p class="section-lead">1クール定員8名。理学療法士が、順に個別リハビリテーションを行います。</p></div><div class="availability-key"><b>最新の空き状況</b><br><span data-last-updated>読み込み中</span></div></div><div class="days" id="days" aria-label="曜日ごとの空き状況"></div><div class="booking-strip"><div><strong id="selection">気になる枠を選んでください。</strong><span>選択後、お問い合わせ窓口でご希望をお知らせください。</span></div><a class="button" href="#contact">お問い合わせへ</a></div></div></section>
-    <section class="care"><div class="wrap"><div class="kicker">THE 90 MINUTES</div><h2>リハビリだけの、90分。</h2><div class="care-grid"><article class="care-card"><div class="number">01</div><h3>歩ける方へ。</h3><p>移動が自立している方。歩行器の方や、お家の中を歩ける方も対象です。</p></article><article class="care-card"><div class="number">02</div><h3>動くことへ。</h3><p>食事・入浴・レクリエーションはありません。90分を、動くことに集中します。</p></article><article class="care-card"><div class="number">03</div><h3>少人数で。</h3><p>1コマ定員8名。理学療法士が、順に個別リハビリテーションを行います。</p></article></div></div></section>
-    <section class="analysis" id="analysis"><div class="wrap analysis-grid"><figure class="analysis-figure"><img src="assets/motion-analysis.png" alt="三脚のカメラで歩行を撮影し、骨格と膝の角度を重ねて可視化したイメージ"><figcaption class="caption">三脚で撮る。歩いてもらうだけ。3か月に1度、変化を見える形に。</figcaption></figure><div class="analysis-copy"><div class="kicker">MOTION ANALYSIS</div><h2>言葉だけではなく、動きで確かめる。</h2><p>歩く速さ・歩幅・1分間の歩数・膝の伸び・5回立ち座りを、数値のレポートとして共有します。</p><ul class="steps"><li><b>01</b>初回は約5分</li><li><b>02</b>以降は約2分</li><li><b>03</b>ご本人・ご家族・ケアマネジャーへ</li></ul></div></div></section>
-    <section class="transport" id="transport"><div class="wrap transport-grid"><div class="transport-copy"><span class="pill">② 10:40〜12:10 から送迎開始</span><h2>阪本病院から<br>おおむね半径4km。</h2><p>送迎範囲の目安です。圏外にお住まいの方も、まずご相談ください。</p><div class="places">圏内の目安：三本松・湊・中筋・川東・白鳥・大内・町田・土居・落合・小磯・帰来 ほか</div></div><figure class="transport-map"><img src="assets/transport-area.png" alt="阪本病院を中心とした半径4kmの送迎範囲マップ"></figure></div></section>
-    <section class="contact" id="contact"><div class="wrap contact-grid"><div><div class="kicker" style="color:#e9a68d">CONTACT</div><h2>お問い合わせ窓口</h2><p>ご希望の曜日・クールをお知らせください。正式な連絡先は、開設前にご案内します。</p><form class="contact-form" id="contact-form"><input aria-label="お名前" placeholder="お名前"><select aria-label="ご希望のクール"><option value="">ご希望のクールを選択</option><option>① 9:00〜10:30</option><option>② 10:40〜12:10（送迎あり）</option><option>③ 13:30〜15:00</option><option>④ 15:10〜16:40</option></select><button class="button" type="submit">お問い合わせ内容を確認する</button></form></div><aside class="qr-card"><img src="assets/contact-qr.png" alt="このサイトを開くQRコード"><strong>サイトを開く</strong><span>空き状況・送迎範囲のご案内</span></aside></div></section>
+    <section class="hero"><img src="assets/hero.jpg" alt="理学療法士の見守りのもと運動に取り組む利用者"><div class="wrap hero-copy"><div class="open">2026.11.01 OPEN</div><h1><span>まだ、</span><span>伸びしろがある。</span></h1><p class="hero-lead">それを、一緒に確かめにいく。<b>短時間デイケア　リハプラス さかもと（仮）</b></p><div class="actions"><a class="button" href="#availability">空き状況を見る</a><a class="button light" href="#contact">お問い合わせ窓口</a></div><p class="hero-note">1コマ90分　｜　リハビリに集中する時間</p></div></section>
+    <section class="availability" id="availability"><div class="wrap"><div class="availability-head"><div><div class="kicker">AVAILABILITY</div><h2 class="section-title">ご利用いただける時間帯</h2><p class="section-copy">1クール定員8名。ご希望の空いている時間帯をタップすると、お問い合わせ欄へ移動します。</p></div><div class="updated"><b>空き状況</b><span data-last-updated>読み込み中</span></div></div><div class="days" id="days" aria-label="曜日ごとの空き状況"></div><div class="selection-note"><strong id="selection">気になる時間帯をタップしてください。</strong><span>選択した時間帯は、お問い合わせ欄に自動で反映されます。</span></div></div></section>
+    <section class="care"><div class="wrap"><div class="kicker">REHABILITATION ONLY</div><h2 class="section-title">リハビリだけの、90分。</h2><p class="section-copy">食事・入浴・レクリエーション・お茶出しはありません。動くことに、しっかり時間を使います。</p><div class="care-grid"><article class="care-card"><div class="number">01</div><h3>移動が自立している方へ。</h3><p>ご自身で歩いて移動できる方。歩行器の方や、屋内で歩けるレベルの方も含みます。</p></article><article class="care-card"><div class="number">02</div><h3>一人ひとりに合わせて。</h3><p>理学療法士がホール内を順に回り、個別リハビリテーションを行います。</p></article><article class="care-card"><div class="number">03</div><h3>自分のペースで。</h3><p>個別リハビリ以外の時間は、自主運動を見守ります。</p></article></div></div></section>
+    <section class="guide" id="guide"><div class="wrap guide-grid"><article class="guide-card"><div class="kicker">WHO CAN USE</div><h3>「移動能力」で分けた、<br>リハビリ特化の短時間デイケアです。</h3><ul class="checks"><li>移動が自立している方</li><li>トイレが自立している方</li><li>歩行器の方・屋内で歩けるレベルの方</li></ul><p class="guide-note">介護度が高くても、移動が自立している方はご相談ください。移動に介助が必要な方、車いすでの送迎が必要な方は、これまでどおり通常の通所リハビリテーションをご案内します。</p></article><article class="guide-card"><div class="kicker">THE 90 MINUTES</div><h3>ご利用の流れ</h3><div class="flow"><div class="flow-step"><b>1</b><span>到着・<br>体調確認</span></div><div class="flow-step"><b>2</b><span>理学療法士による<br>個別リハビリ</span></div><div class="flow-step"><b>3</b><span>自主<br>トレーニング</span></div><div class="flow-step"><b>4</b><span>休憩<br>（レスト）</span></div><div class="flow-step"><b>5</b><span>お帰り</span></div></div><p class="guide-note">送迎をご利用の場合は、順次お迎え・お送りいたします。ご持参いただくもの：飲み物、汗を拭くタオル。</p></article></div></section>
+    <section class="transport" id="transport"><div class="wrap transport-grid"><div class="transport-copy"><span class="pill">送迎範囲</span><h2>阪本病院から<br>おおむね半径4km。</h2><p>送迎範囲の目安です。圏外にお住まいの方も、まずご相談ください。</p><p class="subnote">送迎は②クール（10:40〜12:10）から開始します。</p></div><figure class="transport-map"><img src="assets/transport-area.png" alt="阪本病院を中心としたおおむね半径4kmの送迎範囲マップ"></figure></div></section>
+    <section class="contact" id="contact"><div class="wrap contact-grid"><div><div class="kicker" style="color:#f3a47a">CONTACT</div><h2>お問い合わせ窓口</h2><p class="contact-copy">ご希望の時間帯と、担当ケアマネジャー様の情報をご入力ください。</p><form class="contact-form" id="contact-form"><input required name="user-name" aria-label="ご利用を検討される方のお名前" placeholder="ご利用を検討される方のお名前"><input required name="office-name" aria-label="居宅介護支援事業所名" placeholder="居宅介護支援事業所名"><input required name="manager-name" aria-label="担当ケアマネジャー名" placeholder="担当ケアマネジャー名"><input required type="tel" name="phone" aria-label="ご連絡先電話番号" placeholder="ご連絡先電話番号"><select required name="weekday" aria-label="ご希望の曜日"><option value="">ご希望の曜日を選択</option></select><select required name="course" aria-label="ご希望の時間帯"><option value="">ご希望の時間帯を選択</option></select><select name="transport" aria-label="送迎のご希望"><option value="">送迎のご希望（任意）</option><option>送迎を希望する</option><option>送迎は不要</option><option>まず相談したい</option></select><textarea name="message" aria-label="お問い合わせ内容" placeholder="お問い合わせ内容（任意）"></textarea><button class="button" type="submit">入力内容を確認する</button><p class="form-notice">送信先メールアドレスの決定後、このフォームから送信できるようにします。</p><div class="form-result" id="form-result" role="status"></div></form></div><aside class="qr-card"><img src="assets/contact-qr.png" alt="このサイトを開くQRコード"><strong>空き状況を確認</strong><span>QRコードでこのページを開けます</span></aside></div></section>
   </main>
-  <footer><div class="wrap"><span>医療法人社団聖心会　阪本病院／介護医療院</span><span>（仮）リハビリ専科 さかもと　｜　正式名称は届出までに決定予定</span></div></footer>
+  <footer><div class="wrap"><span>医療法人社団聖心会　阪本病院／介護医療院</span><span>リハプラス さかもと（仮）　｜　正式名称は届出までに決定予定</span></div></footer>
   <script>
-    const days = ['月','火','木','金','土'];
-    const slots = [
-      ['①','9:00〜10:30','送迎なし'],
-      ['②','10:40〜12:10','送迎あり'],
-      ['③','13:30〜15:00','送迎未定'],
-      ['④','15:10〜16:40','送迎未定']
-    ];
-    const root = document.getElementById('days');
-    const fallback = { capacityPerCourse:8, availability:Object.fromEntries(days.map(day => [day, Object.fromEntries(slots.map(([num]) => [num,8]))])) };
-    function stamp(iso) {
-      if (!iso) return '公開中の空き状況';
-      const d = new Date(iso);
-      return `最終更新：${d.toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}`;
-    }
-    function renderAvailability(data) {
-      const capacity = data.capacityPerCourse || 8;
-      root.replaceChildren();
-      days.forEach(day => {
-        const el = document.createElement('article'); el.className = 'day';
-        el.innerHTML = `<div class="day-title">${day}曜日</div>`;
-        slots.forEach(([num,time,transport]) => {
-          const remaining = data.availability?.[day]?.[num] ?? capacity;
-          const isOpen = remaining > 0;
-          const btn = document.createElement('button');
-          btn.className = `slot ${num === '②' ? 'send' : ''}`;
-          btn.innerHTML = `<span class="slot-num">${num}クール</span><span class="slot-time">${time}</span><span class="slot-status">${isOpen ? `空きあり　${remaining} / ${capacity}` : '受付調整中'}</span>`;
-          btn.addEventListener('click', () => {
-            document.querySelectorAll('.slot').forEach(x => x.classList.remove('selected'));
-            btn.classList.add('selected');
-            document.getElementById('selection').textContent = `${day}曜日　${num} ${time} を選択中`;
-            const select = document.querySelector('#contact-form select');
-            select.selectedIndex = slots.findIndex(x => x[0] === num) + 1;
-          });
-          el.appendChild(btn);
-        });
-        root.appendChild(el);
-      });
-      document.querySelectorAll('[data-last-updated]').forEach(el => el.textContent = stamp(data.updatedAt));
-    }
-    async function refreshAvailability() {
-      try {
-        const response = await fetch(`assets/availability.json?${Date.now()}`, {cache:'no-store'});
-        renderAvailability(response.ok ? await response.json() : fallback);
-      } catch { renderAvailability(fallback); }
-    }
-    refreshAvailability();
-    setInterval(refreshAvailability, 60000);
-    document.getElementById('contact-form').addEventListener('submit', event => {
-      event.preventDefault();
-      alert('お問い合わせ窓口は公開準備中です。正式な連絡先の決定後、このフォームを接続します。');
-    });
+    const days=['月','火','木','金','土'];
+    const slots=[['①','9:00〜10:30','送迎なし'],['②','10:40〜12:10','送迎あり'],['③','13:30〜15:00','送迎なし'],['④','15:10〜16:40','送迎なし']];
+    const root=document.getElementById('days');
+    const weekdaySelect=document.querySelector('select[name="weekday"]');
+    const courseSelect=document.querySelector('select[name="course"]');
+    const fallback={capacityPerCourse:8,availability:Object.fromEntries(days.map(day=>[day,Object.fromEntries(slots.map(([num])=>[num,8]))]))};
+    days.forEach(day=>{const option=document.createElement('option');option.value=day;option.textContent=`${day}曜日`;weekdaySelect.appendChild(option)});
+    slots.forEach(([num,time,transport])=>{const option=document.createElement('option');option.value=`${num}クール　${time}`;option.textContent=`${num}クール　${time}${transport==='送迎あり'?'（送迎あり）':''}`;courseSelect.appendChild(option)});
+    function stamp(iso){if(!iso)return'公開中';const date=new Date(iso);return `最終更新：${date.toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}`}
+    function choose(day,num,time,button){document.querySelectorAll('.slot').forEach(item=>item.classList.remove('selected'));button.classList.add('selected');document.getElementById('selection').textContent=`${day}曜日　${num}クール ${time} を選択しました。`;weekdaySelect.value=day;courseSelect.value=`${num}クール　${time}`;document.getElementById('contact').scrollIntoView({behavior:'smooth',block:'start'});window.setTimeout(()=>courseSelect.focus({preventScroll:true}),550)}
+    function renderAvailability(data){const capacity=data.capacityPerCourse||8;root.replaceChildren();days.forEach(day=>{const card=document.createElement('article');card.className='day';card.innerHTML=`<div class="day-title">${day}曜日</div>`;slots.forEach(([num,time,transport])=>{const remaining=data.availability?.[day]?.[num]??capacity;const open=remaining>0;const button=document.createElement('button');button.type='button';button.className=`slot ${num==='②'?'send':''}`;button.setAttribute('aria-label',`${day}曜日 ${num}クール ${time} ${open?'空きあり':'受付調整中'}。お問い合わせへ進む`);button.innerHTML=`<span class="slot-num">${num}クール</span><span class="slot-time">${time}</span>${num==='②'?'<span class="send-badge">送迎あり</span>':''}<span class="slot-status">${open?`空きあり　${remaining}/${capacity}`:'受付調整中'}</span>`;if(open)button.addEventListener('click',()=>choose(day,num,time,button));card.appendChild(button)});root.appendChild(card)});document.querySelectorAll('[data-last-updated]').forEach(el=>el.textContent=stamp(data.updatedAt))}
+    async function refreshAvailability(){try{const response=await fetch(`assets/availability.json?${Date.now()}`,{cache:'no-store'});renderAvailability(response.ok?await response.json():fallback)}catch{renderAvailability(fallback)}}
+    refreshAvailability();setInterval(refreshAvailability,60000);
+    document.getElementById('contact-form').addEventListener('submit',event=>{event.preventDefault();const result=document.getElementById('form-result');result.textContent='入力内容を確認しました。送信先メールアドレスの決定後、このフォームから送信できるようにします。';result.style.display='block'});
   </script>
 </body>
 </html>
