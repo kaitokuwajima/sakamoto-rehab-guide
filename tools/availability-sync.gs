@@ -12,7 +12,7 @@ var CONFIG = {
   repo: 'sakamoto-rehab-guide',
   branch: 'main',                    // GitHub Pages が公開しているブランチ
   path: 'assets/availability.json',
-  sheetName: '空き状況',
+  sheetName: '空き状況',        // この名前のシートが無ければ、先頭のシートを使います
   capacityCell: 'B1'                 // 1クールの定員
 };
 
@@ -67,15 +67,22 @@ function syncIfDirty() {
 
 /** 編集トリガー（インストール型）。編集があったことだけ記録します。 */
 function onSheetEdit(e) {
-  if (e && e.range && e.range.getSheet().getName() !== CONFIG.sheetName) return;
+  var target = getSheet_();
+  if (e && e.range && target && e.range.getSheet().getSheetId() !== target.getSheetId()) return;
   PropertiesService.getScriptProperties().setProperty(DIRTY_KEY, 'yes');
 }
 
 /* ---------------- シート読み取り ---------------- */
 
+/** 「空き状況」シート。無ければ先頭のシートを使います。 */
+function getSheet_() {
+  var ss = SpreadsheetApp.getActive();
+  return ss.getSheetByName(CONFIG.sheetName) || ss.getSheets()[0];
+}
+
 function buildJson_() {
-  var sheet = SpreadsheetApp.getActive().getSheetByName(CONFIG.sheetName);
-  if (!sheet) throw new Error('「' + CONFIG.sheetName + '」という名前のシートが見つかりません。');
+  var sheet = getSheet_();
+  if (!sheet) throw new Error('シートが見つかりません。');
 
   var capacity = Math.max(1, Math.round(Number(sheet.getRange(CONFIG.capacityCell).getValue()) || 8));
   var values = sheet.getDataRange().getValues();
@@ -211,6 +218,10 @@ function testConnection() {
 function createSheetTemplate() {
   var ss = SpreadsheetApp.getActive();
   if (ss.getSheetByName(CONFIG.sheetName)) { notify_('「' + CONFIG.sheetName + '」シートは既にあります。'); return; }
+  if (ss.getSheets().length === 1 && ss.getSheets()[0].getLastRow() > 2) {
+    notify_('すでに表が入っているようです。ひな形は作らず、そのままのシートを使います。');
+    return;
+  }
   var sheet = ss.insertSheet(CONFIG.sheetName);
 
   sheet.getRange('A1').setValue('1クールの定員').setFontWeight('bold');
