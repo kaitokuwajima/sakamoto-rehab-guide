@@ -28,27 +28,23 @@
     .topnav a.tel-mini{padding:9px 16px;border-radius:999px;background:var(--orange);color:#fff}
 
     /* hero */
-    .hero{min-height:660px;position:relative;display:flex;align-items:center;isolation:isolate;overflow:hidden}
+    .hero{min-height:100vh;min-height:100svh;position:relative;display:flex;align-items:center;isolation:isolate;overflow:hidden}
     .hero::before{content:"";position:absolute;inset:0;z-index:1;
-      background:linear-gradient(90deg,rgba(255,254,250,.95) 0%,rgba(255,254,250,.84) 34%,rgba(255,254,250,.18) 65%,rgba(255,254,250,0) 100%)}
+      background:linear-gradient(90deg,rgba(255,254,250,.94) 0%,rgba(255,254,250,.8) 30%,rgba(255,254,250,.12) 58%,rgba(255,254,250,0) 78%)}
     .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 24%;z-index:0}
     .hero-copy{position:relative;z-index:2;width:min(100%,620px);padding:78px 0}
     .open{display:inline-flex;align-items:center;gap:9px;color:var(--orange);font-size:14px;font-weight:900;letter-spacing:.1em}
     .open::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--orange)}
     h1{margin:19px 0 16px;font-size:clamp(45px,6.5vw,78px);line-height:1.12;letter-spacing:-.075em;font-weight:900}
     h1 span{display:block}
-    .hero-lead{margin:0;font-size:clamp(20px,2.3vw,29px);font-weight:800;line-height:1.55;letter-spacing:-.04em}
+    .hero-lead{margin:0;font-size:clamp(20px,2.3vw,29px);font-weight:800;line-height:1.55;letter-spacing:-.04em;text-shadow:0 1px 3px rgba(255,254,250,.85)}
     .hero-lead b{display:block;color:#36726c;font-size:.78em}
     .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
     .button{display:inline-flex;min-height:54px;align-items:center;justify-content:center;gap:9px;
       padding:13px 24px;border:1px solid var(--deep);border-radius:6px;background:var(--deep);color:#fff;
       text-decoration:none;font-size:15px;font-weight:900;cursor:pointer}
     .button.light{background:rgba(255,255,255,.86);color:var(--ink)}
-    .hero-note{margin:18px 0 0;color:#54716b;font-size:13px;font-weight:800}
-    .hero-facts{display:flex;gap:28px;flex-wrap:wrap;margin-top:32px;padding-top:24px;border-top:1px solid rgba(8,63,66,.14)}
-    .hero-facts div{min-width:112px}
-    .hero-facts b{display:block;font-size:20px;letter-spacing:-.04em}
-    .hero-facts span{display:block;color:#5d7872;font-size:12px;font-weight:900;letter-spacing:.06em}
+    .hero-note{margin:18px 0 0;color:#44625c;font-size:13px;font-weight:800;text-shadow:0 1px 2px rgba(255,254,250,.9)}
 
     /* generic section */
     section{padding:96px 0}
@@ -176,11 +172,11 @@
       .brand{font-size:14px;line-height:1.32}
       .brand small{font-size:9px;letter-spacing:.04em}
       .topbar .wrap{min-height:62px;gap:10px}
-      .hero{min-height:670px;align-items:flex-start}
-      .hero::before{background:linear-gradient(180deg,rgba(255,254,250,.96),rgba(255,254,250,.86) 52%,rgba(255,254,250,.15) 100%)}
-      .hero-copy{padding-top:60px}
+      .hero{min-height:100svh;align-items:flex-start}
+      .hero::before{background:linear-gradient(180deg,rgba(255,254,250,.95) 0%,rgba(255,254,250,.88) 42%,rgba(255,254,250,.22) 70%,rgba(255,254,250,0) 88%)}
+      .hero-copy{padding:44px 0 40px}
+      .hero-note{display:none}  /* 同じ内容は「ご利用の流れ」に記載。スマホでは写真を見せる */
       .actions .button{flex:1 1 100%}
-      .hero-facts{gap:18px;margin-top:26px}
       section{padding:64px 0}
       .availability-head{display:block}
       .updated{display:inline-block;margin-top:17px}
@@ -227,11 +223,6 @@
           <a class="button light" href="#contact">お電話でのお問い合わせ</a>
         </div>
         <p class="hero-note">1コマ90分　｜　リハビリテーションに特化した短時間デイケア</p>
-        <div class="hero-facts">
-          <div><b>90分</b><span>1コマの時間</span></div>
-          <div><b>8名</b><span>1クールの定員</span></div>
-          <div><b>半径4km</b><span>送迎範囲の目安</span></div>
-        </div>
       </div>
     </section>
 
