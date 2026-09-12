@@ -70,7 +70,7 @@
     .availability-slot-head b{display:block;font-size:24px;line-height:1.2;letter-spacing:-.04em}
     .availability-slot-head span{display:block;color:#4d706a;font-size:13px;font-weight:900}
     .availability-slot-head .send-badge{margin:0;white-space:nowrap}
-    .day-pills{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;padding:14px}
+    .day-pills{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;padding:14px}
     .day-pill{min-height:68px;padding:8px 4px;border:1px solid #dfe9e2;border-radius:9px;background:#f7fbf8;color:var(--ink);
       font:inherit;text-align:center;cursor:pointer;transition:background .18s,border-color .18s}
     .day-pill:hover,.day-pill:focus-visible,.day-pill.selected{outline:none;border-color:#55a47c;background:#dff2e6}
@@ -186,7 +186,7 @@
       .updated{display:inline-block;margin-top:17px}
       .availability-slot-head{padding:15px}
       .availability-slot-head b{font-size:20px}
-      .day-pills{gap:5px;padding:10px}
+      .day-pills{grid-template-columns:repeat(3,1fr);gap:6px;padding:10px}
       .day-pill{min-height:62px}
       .care-grid{grid-template-columns:1fr;gap:10px}
       .gear{grid-template-columns:1fr}
@@ -318,7 +318,7 @@
             <div class="flow-step"><b>4</b><div><strong>自主トレーニング</strong><span>機器を使い、ご自身のペースでトレーニングします。</span></div></div>
             <div class="flow-step"><b>5</b><div><strong>お帰り</strong><span>送迎をご利用の方はご自宅までお送りします。</span></div></div>
           </div>
-          <p class="guide-note">1コマ90分。日曜・祝日は定休日です。</p>
+          <p class="guide-note">1コマ90分。営業日は月・火・水・木・金・土、日曜・祝日は定休日です。</p>
         </article>
       </div>
     </section>
@@ -383,11 +383,13 @@
        空のままだと「準備中」と表示され、番号を入れると自動でタップ発信のボタンになります。 */
     const TEL='';
 
-    const days=['月','火','木','金','土'];
+    /* 曜日は assets/availability.json の "days" があればそちらを優先します
+       （スプレッドシート側で曜日を増減しても、このファイルを直さずに反映されます）。 */
+    const DEFAULT_DAYS=['月','火','水','木','金','土'];
     const slots=[['①','9:00〜10:30','送迎なし'],['②','10:40〜12:10','送迎あり'],['③','13:30〜15:00','送迎なし'],['④','15:10〜16:40','送迎なし']];
     const root=document.getElementById('days');
     const contactSelection=document.getElementById('contact-selection');
-    const fallback={capacityPerCourse:8,availability:Object.fromEntries(days.map(day=>[day,Object.fromEntries(slots.map(([num])=>[num,8]))]))};
+    const fallback={capacityPerCourse:8,days:DEFAULT_DAYS,availability:Object.fromEntries(DEFAULT_DAYS.map(day=>[day,Object.fromEntries(slots.map(([num])=>[num,8]))]))};
 
     document.documentElement.style.setProperty('--phone-icon',`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.6a1 1 0 0 1-.25 1z'/%3E%3C/svg%3E")`);
 
@@ -398,7 +400,7 @@
       area.innerHTML=`<a class="tel-link" href="${href}">${TEL}</a><br><a class="tel-cta" href="${href}">タップして電話をかける</a>`;
     }
 
-    function stamp(iso){if(!iso)return'公開中';const date=new Date(iso);return `最終更新：${date.toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}`}
+    function stamp(iso){if(!iso)return'公開中';const date=new Date(iso);return `最終更新：${date.toLocaleString('ja-JP',{timeZone:'Asia/Tokyo',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})}`}
 
     function choose(day,num,time,button){
       document.querySelectorAll('.day-pill').forEach(item=>item.classList.remove('selected'));
@@ -410,6 +412,7 @@
 
     function renderAvailability(data){
       const capacity=data.capacityPerCourse||8;
+      const days=Array.isArray(data.days)&&data.days.length?data.days:DEFAULT_DAYS;
       root.replaceChildren();
       slots.forEach(([num,time])=>{
         const card=document.createElement('article');
